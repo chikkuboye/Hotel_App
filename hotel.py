@@ -13,6 +13,7 @@ while True:
         4 .Biscuit
         5 .Chocolate
         6 .Billing
+        7 .Exit
     ''')
     choice = int(input('Enter the item you need from the display part : '))
     
@@ -52,18 +53,20 @@ while True:
         print('You enter into billing section')
         name = input('Enter the name : ')
         phone = input('Enter the phone number : ')
-        dates = input('Enter the date in the form of yyyy-mm-d : ')
-        
+        #dates = input('Enter the date in the form of yyyy-mm-d : ')
+        l1 = []
+        l1.extend(l)
         count = 0
-        for i in l:
+        for i in l1:
            count = count + i
-
+           l.remove(i)
         amount = count
         # #print(f'Total amount {count} ') 
-        sql = "INSERT INTO `items`(`Name`, `Phone_number`, `Date_`, `Total_Amount`) VALUES (%s,%s,%s,%s)"
-        data = (name,phone,dates,amount)
+        sql = "INSERT INTO `items`(`Name`, `Phone_number`, `Date_`,`Total_Amount`) VALUES (%s,%s,now(),%s)"
+        data = (name,phone,amount)
         mycursor.execute(sql,data)
         mydb.commit()
         print('Thank you Welcome to next time ')
+    elif(choice == 7):
         break
     
