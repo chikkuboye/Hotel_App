@@ -1,6 +1,10 @@
 import mysql.connector
+import sys
+try:
 
-mydb = mysql.connector.connect(host = 'localhost' , user = 'root' , password = '' , database = 'hotel_db')
+    mydb = mysql.connector.connect(host = 'localhost' , user = 'root' , password = '' , database = 'hotel_db')
+except mysql.connector.Error as e:
+    sys.exit('connection failure')
 
 mycursor = mydb.cursor()
 l = []
@@ -67,30 +71,42 @@ while True:
         # #print(f'Total amount {count} ') 
         sql = "INSERT INTO `items`(`Name`, `Phone_number`, `Date_`,`Total_Amount`) VALUES (%s,%s,now(),%s)"
         data = (name,phone,amount)
-        mycursor.execute(sql,data)
-        mydb.commit()
+        try:
+            mycursor.execute(sql,data)
+            mydb.commit()
+        except mysql.connector.Error as e:
+            sys.exit('insertion error')
         print('Thank you Welcome to next time ')
     elif(choice == 7):
         print('Display the transaction details')
         date = input('Enter the date where you need the transaction details (yyyy-mm-d) : ')
         sql = "SELECT * FROM `items` WHERE `Date_`='"+date+"'"
-        mycursor.execute(sql)
-        result = mycursor.fetchall()
-        print(result)
+        try:
+            mycursor.execute(sql)
+            result = mycursor.fetchall()
+            print(result)
+        except mysql.connector.Error as e:
+            sys.exit('Selection error',e)
     elif(choice == 8):
         print('Display the transaction summary of particular day')
         date = input('Enter the date for which the summary of transaction needed : ')
         sql = "SELECT `Date_`, SUM(`Total_Amount`) FROM `items` WHERE `Date_`='"+date+"'"
-        mycursor.execute(sql)
-        result = mycursor.fetchall()
-        print(result)
+        try:
+            mycursor.execute(sql)
+            result = mycursor.fetchall()
+            print(result)
+        except mysql.connector.Error as e:
+            sys.exit('Searching date unavailable',e)
     elif(choice == 9):
         print('transaction summary for a period')
         date1 = input('Enter the starting date :')
         date2 = input('Enter the ending date : ')
         sql = "SELECT SUM(`Total_Amount`) FROM `items` WHERE `Date_` BETWEEN '"+date1+"' AND '"+date2+"'"
-        mycursor.execute(sql)
-        result = mycursor.fetchall()
+        try:
+            mycursor.execute(sql)
+            result = mycursor.fetchall()
+        except mysql.connector.Error as e:
+            sys.exit('Searching error ',e )
         print(result)
     elif(choice == 10):
         break
