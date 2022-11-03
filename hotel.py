@@ -1,5 +1,6 @@
 import mysql.connector
 import sys
+from tabulate import tabulate
 try:
 
     mydb = mysql.connector.connect(host = 'localhost' , user = 'root' , password = '' , database = 'hotel_db')
@@ -84,7 +85,12 @@ while True:
         try:
             mycursor.execute(sql)
             result = mycursor.fetchall()
-            print(result)
+            for i in result:
+                print('name',i[1])
+                print('phone',i[2])
+                print('date',i[3])
+                print('Amount',i[4],'\n')
+            
         except mysql.connector.Error as e:
             sys.exit('Selection error',e)
     elif(choice == 8):
@@ -94,6 +100,7 @@ while True:
         try:
             mycursor.execute(sql)
             result = mycursor.fetchall()
+            print(tabulate(result,headers=['date','amount'],tablefmt = "psql"))
             print(result)
         except mysql.connector.Error as e:
             sys.exit('Searching date unavailable',e)
@@ -105,6 +112,7 @@ while True:
         try:
             mycursor.execute(sql)
             result = mycursor.fetchall()
+            print(tabulate(result,headers=['amount'],tablefmt = "psql"))
         except mysql.connector.Error as e:
             sys.exit('Searching error ',e )
         print(result)
