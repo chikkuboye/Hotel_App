@@ -85,12 +85,12 @@ while True:
         try:
             mycursor.execute(sql)
             result = mycursor.fetchall()
-            # for i in result:
-            #     print('name',i[1])
-            #     print('phone',i[2])
-            #     print('date',i[3])
-            #     print('Amount',i[4],'\n')
-            print(tabulate(result,headers=['id','name','phone number','date','amount'],tablefmt = "psql"))
+            for i in result:
+                 print('name',i[1])
+                 print('phone',i[2])
+                 print('date',i[3])
+                 print('Amount',i[4],'\n')
+            #print(tabulate(result,headers=['id','name','phone number','date','amount'],tablefmt = "psql"))
         except mysql.connector.Error as e:
             sys.exit('Selection error',e)
     elif(choice == 8):
@@ -100,8 +100,11 @@ while True:
         try:
             mycursor.execute(sql)
             result = mycursor.fetchall()
-            print(tabulate(result,headers=['date','amount'],tablefmt = "psql"))
-            print(result)
+            for i in result:
+                print('Date',i[0])
+                print('Amount',i[1])
+            #print(tabulate(result,headers=['date','amount'],tablefmt = "psql"))
+            #print(result)
         except mysql.connector.Error as e:
             sys.exit('Searching date unavailable',e)
     elif(choice == 9):
@@ -112,7 +115,9 @@ while True:
         try:
             mycursor.execute(sql)
             result = mycursor.fetchall()
-            print(tabulate(result,headers=['amount'],tablefmt = "psql"))
+            for i in result:
+                print('Total_amount',i[0])
+            #print(tabulate(result,headers=['amount'],tablefmt = "psql"))
         except mysql.connector.Error as e:
             sys.exit('Searching error ',e )
         print(result)
