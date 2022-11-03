@@ -85,12 +85,12 @@ while True:
         try:
             mycursor.execute(sql)
             result = mycursor.fetchall()
-            for i in result:
-                print('name',i[1])
-                print('phone',i[2])
-                print('date',i[3])
-                print('Amount',i[4],'\n')
-            
+            # for i in result:
+            #     print('name',i[1])
+            #     print('phone',i[2])
+            #     print('date',i[3])
+            #     print('Amount',i[4],'\n')
+            print(tabulate(result,headers=['id','name','phone number','date','amount'],tablefmt = "psql"))
         except mysql.connector.Error as e:
             sys.exit('Selection error',e)
     elif(choice == 8):
