@@ -13,7 +13,10 @@ while True:
         4 .Biscuit
         5 .Chocolate
         6 .Billing
-        7 .Exit
+        7 .view all transaction
+        8 .Day wise transaction summary
+        9 .transaction summary for a period
+        10 .Exit
     ''')
     choice = int(input('Enter the item you need from the display part : '))
     
@@ -68,5 +71,16 @@ while True:
         mydb.commit()
         print('Thank you Welcome to next time ')
     elif(choice == 7):
+        print('Display the transaction details')
+        date = input('Enter the date where you need the transaction details (yyyy-mm-d) : ')
+        sql = "SELECT * FROM `items` WHERE `Date_`='"+date+"'"
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        print(result)
+    elif(choice == 8):
+        print('Display the transaction of particular day')
+    elif(choice == 9):
+        print('transaction summary for a period')
+    elif(choice == 10):
         break
     
