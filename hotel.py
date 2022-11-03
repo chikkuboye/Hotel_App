@@ -50,20 +50,20 @@ while True:
         #print(l)
     elif(choice == 6):
         print('You enter into billing section')
-        # name = input('Enter the name : ')
-        # phone = input('Enter the phone number : ')
-        # dates = input('Enter the date in the form of yyyy-mm-d : ')
+        name = input('Enter the name : ')
+        phone = input('Enter the phone number : ')
+        dates = input('Enter the date in the form of yyyy-mm-d : ')
         
-        # count = 0
-        # for i in l:
-        #     count = count + i
+        count = 0
+        for i in l:
+           count = count + i
 
-        # amount = count
+        amount = count
         # #print(f'Total amount {count} ') 
-        # sql = "INSERT INTO `items`(`Name`, `Phone_number`, `Date_`, `Total_Amount`) VALUES (%s,%s,%s,%s)"
-        # data = (name,phone,dates,amount)
-        # mycursor.execute(sql,data)
-        # mydb.commit()
-        # print('Thank you Welcome to next time ')
+        sql = "INSERT INTO `items`(`Name`, `Phone_number`, `Date_`, `Total_Amount`) VALUES (%s,%s,%s,%s)"
+        data = (name,phone,dates,amount)
+        mycursor.execute(sql,data)
+        mydb.commit()
+        print('Thank you Welcome to next time ')
         break
     
