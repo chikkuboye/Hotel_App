@@ -24,10 +24,10 @@ while True:
         l.append(total_price)
     elif(choice == 2):
         print('You had selected Tea')
-        # price = 10
-        # qua = int(input('Enter the quantity you need : '))
-        # total_price = price * qua
-        # l.append(total_price)
+        price = 10
+        qua = int(input('Enter the quantity you need : '))
+        total_price = price * qua
+        l.append(total_price)
     elif(choice == 3):
         print('You had selected Chips')
         # price = 30
