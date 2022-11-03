@@ -43,10 +43,10 @@ while True:
     elif(choice == 5):
         print('You had selected Chocolate')
         price = 18
-        # qua = int(input('Enter the quantity you need : '))
-        # total_price = price * qua
-        # #print(total_price)
-        # l.append(total_price)
+        qua = int(input('Enter the quantity you need : '))
+        total_price = price * qua
+        #print(total_price)
+        l.append(total_price)
         #print(l)
     elif(choice == 6):
         print('You enter into billing section')
