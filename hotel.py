@@ -78,7 +78,12 @@ while True:
         result = mycursor.fetchall()
         print(result)
     elif(choice == 8):
-        print('Display the transaction of particular day')
+        print('Display the transaction summary of particular day')
+        date = input('Enter the date for which the summary of transaction needed : ')
+        sql = "SELECT `Date_`, SUM(`Total_Amount`) FROM `items` WHERE `Date_`='"+date+"'"
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        print(result)
     elif(choice == 9):
         print('transaction summary for a period')
     elif(choice == 10):
